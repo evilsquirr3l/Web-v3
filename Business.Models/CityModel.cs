@@ -9,7 +9,7 @@ namespace Business.Models
         
         public string Name { get; set; }
 
-        public double Population { get; set; }
+        public int Population { get; set; }
 
         public ICollection<StreetModel> Streets { get; set; }
 

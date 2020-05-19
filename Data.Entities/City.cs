@@ -6,7 +6,7 @@ namespace Data.Entities
     {
         public string Name { get; set; }
 
-        public double Population { get; set; }
+        public int Population { get; set; }
 
         public ICollection<Street> Streets { get; set; }
 
