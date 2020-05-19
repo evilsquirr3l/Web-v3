@@ -6,6 +6,8 @@ namespace Data.Entities
     {
         public string Type { get; set; }
 
+        public double Square { get; set; }
+
         public int HouseId { get; set; }
 
         public House House { get; set; }

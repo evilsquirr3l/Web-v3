@@ -37,7 +37,8 @@ namespace Data.Implementation
             {
                 Id = 1,
                 Type = "Serdychka flat",
-                HouseId = 1
+                HouseId = 1,
+                Square = 100
             };
             
             var resident1 = new Resident()
@@ -57,7 +58,8 @@ namespace Data.Implementation
             {
                 Id = 2,
                 Type = "Nirvana",
-                HouseId = 1
+                HouseId = 1,
+                Square = 60
             };
             
             var resident2 = new Resident()
