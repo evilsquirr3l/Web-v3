@@ -4,14 +4,16 @@ using Data.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace data.implementation.Migrations
 {
     [DbContext(typeof(MapDbContext))]
-    partial class MapDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200519162645_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HouseId")
+                    b.Property<int?>("HouseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -42,14 +44,12 @@ namespace data.implementation.Migrations
                         new
                         {
                             Id = 1,
-                            HouseId = 1,
-                            Type = "Serdychka flat"
+                            Type = "Serdychka house"
                         },
                         new
                         {
                             Id = 2,
-                            HouseId = 1,
-                            Type = "Nirvana"
+                            Type = "Hostel"
                         });
                 });
 
@@ -187,13 +187,13 @@ namespace data.implementation.Migrations
                         new
                         {
                             Id = 1,
-                            BirthDate = new DateTime(2002, 5, 19, 19, 30, 16, 727, DateTimeKind.Local).AddTicks(8590),
+                            BirthDate = new DateTime(2002, 5, 19, 19, 26, 33, 63, DateTimeKind.Local).AddTicks(1780),
                             Name = "Max Snizhok"
                         },
                         new
                         {
                             Id = 2,
-                            BirthDate = new DateTime(1993, 5, 19, 19, 30, 16, 735, DateTimeKind.Local).AddTicks(4080),
+                            BirthDate = new DateTime(1993, 5, 19, 19, 26, 33, 70, DateTimeKind.Local).AddTicks(6390),
                             Name = "Kurtka Bayne"
                         });
                 });
@@ -228,11 +228,9 @@ namespace data.implementation.Migrations
 
             modelBuilder.Entity("Data.Entities.Apartment", b =>
                 {
-                    b.HasOne("Data.Entities.House", "House")
+                    b.HasOne("Data.Entities.House", null)
                         .WithMany("Apartments")
-                        .HasForeignKey("HouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HouseId");
                 });
 
             modelBuilder.Entity("Data.Entities.ApartmentResidents", b =>

@@ -4,14 +4,16 @@ using Data.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace data.implementation.Migrations
 {
     [DbContext(typeof(MapDbContext))]
-    partial class MapDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200519161120_ApartmentAddField")]
+    partial class ApartmentAddField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HouseId")
+                    b.Property<int?>("HouseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -37,20 +39,6 @@ namespace data.implementation.Migrations
                     b.HasIndex("HouseId");
 
                     b.ToTable("Apartments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HouseId = 1,
-                            Type = "Serdychka flat"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HouseId = 1,
-                            Type = "Nirvana"
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.ApartmentResidents", b =>
@@ -66,18 +54,6 @@ namespace data.implementation.Migrations
                     b.HasIndex("ResidentId");
 
                     b.ToTable("ApartmentResidents");
-
-                    b.HasData(
-                        new
-                        {
-                            ApartmentId = 1,
-                            ResidentId = 1
-                        },
-                        new
-                        {
-                            ApartmentId = 2,
-                            ResidentId = 2
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.City", b =>
@@ -87,7 +63,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -101,15 +77,6 @@ namespace data.implementation.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryId = 1,
-                            Name = "Kyiv",
-                            Population = 2000000.0
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.Country", b =>
@@ -125,13 +92,6 @@ namespace data.implementation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Ukraine"
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.House", b =>
@@ -147,7 +107,7 @@ namespace data.implementation.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<int>("StreetId")
+                    b.Property<int?>("StreetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -155,15 +115,6 @@ namespace data.implementation.Migrations
                     b.HasIndex("StreetId");
 
                     b.ToTable("Houses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Latitude = 50.439999999999998,
-                            Longitude = 30.52,
-                            StreetId = 1
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.Resident", b =>
@@ -182,20 +133,6 @@ namespace data.implementation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Residents");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BirthDate = new DateTime(2002, 5, 19, 19, 30, 16, 727, DateTimeKind.Local).AddTicks(8590),
-                            Name = "Max Snizhok"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BirthDate = new DateTime(1993, 5, 19, 19, 30, 16, 735, DateTimeKind.Local).AddTicks(4080),
-                            Name = "Kurtka Bayne"
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.Street", b =>
@@ -205,7 +142,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -216,23 +153,13 @@ namespace data.implementation.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Streets");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityId = 1,
-                            Name = "Khreshchatyk"
-                        });
                 });
 
             modelBuilder.Entity("Data.Entities.Apartment", b =>
                 {
-                    b.HasOne("Data.Entities.House", "House")
+                    b.HasOne("Data.Entities.House", null)
                         .WithMany("Apartments")
-                        .HasForeignKey("HouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HouseId");
                 });
 
             modelBuilder.Entity("Data.Entities.ApartmentResidents", b =>
@@ -252,29 +179,23 @@ namespace data.implementation.Migrations
 
             modelBuilder.Entity("Data.Entities.City", b =>
                 {
-                    b.HasOne("Data.Entities.Country", "Country")
+                    b.HasOne("Data.Entities.Country", null)
                         .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
                 });
 
             modelBuilder.Entity("Data.Entities.House", b =>
                 {
                     b.HasOne("Data.Entities.Street", "Street")
                         .WithMany("Houses")
-                        .HasForeignKey("StreetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StreetId");
                 });
 
             modelBuilder.Entity("Data.Entities.Street", b =>
                 {
-                    b.HasOne("Data.Entities.City", "City")
+                    b.HasOne("Data.Entities.City", null)
                         .WithMany("Streets")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId");
                 });
 #pragma warning restore 612, 618
         }
