@@ -10,6 +10,8 @@ namespace Data.Entities
 
         public ICollection<Apartment> Apartments { get; set; }
 
+        public int StreetId { get; set; }
+        
         public Street Street { get; set; }
     }
 }

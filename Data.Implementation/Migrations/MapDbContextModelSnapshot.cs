@@ -29,6 +29,9 @@ namespace data.implementation.Migrations
                     b.Property<int?>("HouseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HouseId");
@@ -58,7 +61,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CountryId")
+                    b.Property<int>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -102,7 +105,7 @@ namespace data.implementation.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<int?>("StreetId")
+                    b.Property<int>("StreetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -137,7 +140,7 @@ namespace data.implementation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -174,23 +177,29 @@ namespace data.implementation.Migrations
 
             modelBuilder.Entity("Data.Entities.City", b =>
                 {
-                    b.HasOne("Data.Entities.Country", null)
+                    b.HasOne("Data.Entities.Country", "Country")
                         .WithMany("Cities")
-                        .HasForeignKey("CountryId");
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Entities.House", b =>
                 {
                     b.HasOne("Data.Entities.Street", "Street")
                         .WithMany("Houses")
-                        .HasForeignKey("StreetId");
+                        .HasForeignKey("StreetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Entities.Street", b =>
                 {
-                    b.HasOne("Data.Entities.City", null)
+                    b.HasOne("Data.Entities.City", "City")
                         .WithMany("Streets")
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -9,5 +9,9 @@ namespace Data.Entities
         public double Population { get; set; }
 
         public ICollection<Street> Streets { get; set; }
+
+        public int CountryId { get; set; }
+
+        public Country Country { get; set; }
     }
 }
