@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace data.implementation.Migrations
+namespace Data.Implementation.Migrations
 {
     public partial class ApartmentAddField : Migration
     {
