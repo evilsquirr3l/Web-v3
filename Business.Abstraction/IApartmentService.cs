@@ -5,6 +5,6 @@ namespace Business.Abstraction
 {
     public interface IApartmentService
     {
-        Task<bool> AddResidentToApartment(ApartmentModel apartmentModel, ResidentModel residentModel);
+        Task AddResidentToApartment(int apartmentId, int residentId);
     }
 }

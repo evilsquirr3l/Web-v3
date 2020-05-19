@@ -6,10 +6,10 @@ namespace Business.Abstraction
 {
     public interface IMapService
     {
-        Task<IEnumerable<CityModel>> FindCityByName(string name);
+        IEnumerable<CityModel> FindCityByName(string name);
         
-        Task<IEnumerable<CityModel>> FindCityByPopulation(double population);
+        IEnumerable<CityModel> FindCityByPopulation(int population);
         
-        Task<IEnumerable<CityModel>> FindCityByStreet(double population, int? houseId = null);
+        IEnumerable<CityModel> FindCityByStreet(CitySearchModel searchModel);
     }
 }
