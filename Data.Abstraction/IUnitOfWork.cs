@@ -5,7 +5,7 @@ namespace Data.Abstraction
 {
     public interface IUnitOfWork
     {
-        public IRepository<Apartment> ApartmentRepository { get; }
+        public IApartmentRepository ApartmentRepository { get; }
 
         public IRepository<City> CityRepository { get; }
 
@@ -13,7 +13,7 @@ namespace Data.Abstraction
 
         public IRepository<House> HouseRepository { get;  }
 
-        public IRepository<Resident> ResidentRepository { get; }
+        public IResidentRepository ResidentRepository { get; }
 
         public IRepository<Street> StreetRepository { get; }
 
