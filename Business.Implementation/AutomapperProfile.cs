@@ -22,7 +22,8 @@ namespace Business.Implementation
 
             CreateMap<Apartment, ApartmentModel>()
                 .ForMember(a => a.Residents,
-                    opt => opt.MapFrom(a => a.Residents.Select(r => r.Resident)))
+                    opt => opt.MapFrom(a => 
+                        a.Residents.Select(r => r.Resident)))
                 .ReverseMap()
                 .ForMember(a => a.Residents,
                     opt => opt.MapFrom(a =>
