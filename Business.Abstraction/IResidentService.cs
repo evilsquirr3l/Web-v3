@@ -6,6 +6,8 @@ namespace Business.Abstraction
 {
     public interface IResidentService
     {
+        IEnumerable<ResidentModel> GetAll();
+        
         IEnumerable<ResidentModel> FindByName(string name);
         
         IEnumerable<ResidentModel> FindByBirthdate(DateTime birthdate);

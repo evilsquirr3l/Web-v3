@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -17,6 +18,13 @@ namespace Business.Implementation
         {
             _mapper = mapper;
             _unit = unit;
+        }
+
+        public IEnumerable<ApartmentModel> GetAll()
+        {
+            var apartments = _unit.ApartmentRepository.FindAll();
+            
+            return _mapper.Map<IEnumerable<ApartmentModel>>(apartments);
         }
 
         public async Task AddResidentToApartment(int apartmentId, int residentId)

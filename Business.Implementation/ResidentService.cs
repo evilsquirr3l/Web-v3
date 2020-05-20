@@ -19,6 +19,13 @@ namespace Business.Implementation
             _mapper = mapper;
         }
 
+        public IEnumerable<ResidentModel> GetAll()
+        {
+            var residents = _unit.ResidentRepository.FindAll();
+
+            return _mapper.Map<IEnumerable<ResidentModel>>(residents);
+        }
+
         public IEnumerable<ResidentModel> FindByName(string name)
         {
             var residentsWithSelectedName =
