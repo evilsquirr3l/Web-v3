@@ -12,6 +12,10 @@ namespace Data.Implementation
                 options.UseSqlServer(connectionString));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            
+            services.AddScoped<IResidentRepository, ResidentRepository>();
+            
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

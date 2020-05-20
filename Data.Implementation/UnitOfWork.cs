@@ -8,7 +8,7 @@ namespace Data.Implementation
     {
         private readonly MapDbContext _context;
 
-        public UnitOfWork(MapDbContext context, IRepository<Apartment> apartmentRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<House> houseRepository, IRepository<Resident> residentRepository, IRepository<Street> streetRepository)
+        public UnitOfWork(MapDbContext context, IApartmentRepository apartmentRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<House> houseRepository, IResidentRepository residentRepository, IRepository<Street> streetRepository)
         {
             _context = context;
             ApartmentRepository = apartmentRepository;
@@ -19,15 +19,15 @@ namespace Data.Implementation
             StreetRepository = streetRepository;
         }
 
-        public IRepository<Apartment> ApartmentRepository { get; }
+        public IApartmentRepository ApartmentRepository { get; }
         
         public IRepository<City> CityRepository { get; }
         
         public IRepository<Country> CountryRepository { get; }
         
         public IRepository<House> HouseRepository { get; }
-        
-        public IRepository<Resident> ResidentRepository { get; }
+
+        public IResidentRepository ResidentRepository { get; }
         
         public IRepository<Street> StreetRepository { get; }
 

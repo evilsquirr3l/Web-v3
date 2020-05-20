@@ -19,12 +19,12 @@ namespace Data.Implementation
  
         public IQueryable<TEntity> FindAll()
         {
-            return _dbSet.AsNoTracking();
+            return _dbSet;
         }
  
         public IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression)
         {
-            return _dbSet.Where(expression).AsNoTracking();
+            return _dbSet.Where(expression);
         }
  
         public async Task Create(TEntity entity)
