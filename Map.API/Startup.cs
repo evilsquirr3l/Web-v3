@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Implementation;
 using Data.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,8 @@ namespace Map.API
             services.AddControllers();
 
             services.RegisterDataServices(Configuration.GetConnectionString("Map"));
+
+            services.RegisterBusinessServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
