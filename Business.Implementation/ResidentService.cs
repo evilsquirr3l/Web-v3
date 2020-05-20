@@ -21,7 +21,7 @@ namespace Business.Implementation
 
         public IEnumerable<ResidentModel> GetAll()
         {
-            var residents = _unit.ResidentRepository.FindAll();
+            var residents = _unit.ResidentRepository.GetResidentsWithDetails();
 
             return _mapper.Map<IEnumerable<ResidentModel>>(residents);
         }
