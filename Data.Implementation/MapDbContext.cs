@@ -9,7 +9,6 @@ namespace Data.Implementation
     {
         public MapDbContext(DbContextOptions<MapDbContext> options) : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -50,6 +49,7 @@ namespace Data.Implementation
             
             var apartmentResident1 = new ApartmentResidents()
             {
+                Id = 1,
                 ApartmentId = 1,
                 ResidentId = 1
             };
@@ -71,6 +71,7 @@ namespace Data.Implementation
             
             var apartmentResident2 = new ApartmentResidents()
             {
+                Id = 2,
                 ApartmentId = 2,
                 ResidentId = 2
             };

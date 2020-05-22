@@ -1,6 +1,6 @@
 namespace Data.Entities
 {
-    public class ApartmentResidents
+    public class ApartmentResidents : BaseEntity
     {
         public int ApartmentId { get; set; }
 

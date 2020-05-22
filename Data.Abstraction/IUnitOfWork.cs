@@ -17,6 +17,8 @@ namespace Data.Abstraction
 
         public IRepository<Street> StreetRepository { get; }
 
+        public IRepository<ApartmentResidents> ApartmentResidentsRepository { get; }
+
         Task<int> SaveAsync();
     }
 }

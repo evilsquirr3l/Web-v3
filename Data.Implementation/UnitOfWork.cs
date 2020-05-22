@@ -8,7 +8,10 @@ namespace Data.Implementation
     {
         private readonly MapDbContext _context;
 
-        public UnitOfWork(MapDbContext context, IApartmentRepository apartmentRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<House> houseRepository, IResidentRepository residentRepository, IRepository<Street> streetRepository)
+        public UnitOfWork(MapDbContext context, IApartmentRepository apartmentRepository, 
+            IRepository<City> cityRepository, IRepository<Country> countryRepository, 
+            IRepository<House> houseRepository, IResidentRepository residentRepository, 
+            IRepository<Street> streetRepository, IRepository<ApartmentResidents> apartmentResidentsRepository)
         {
             _context = context;
             ApartmentRepository = apartmentRepository;
@@ -17,6 +20,7 @@ namespace Data.Implementation
             HouseRepository = houseRepository;
             ResidentRepository = residentRepository;
             StreetRepository = streetRepository;
+            ApartmentResidentsRepository = apartmentResidentsRepository;
         }
 
         public IApartmentRepository ApartmentRepository { get; }
@@ -31,6 +35,8 @@ namespace Data.Implementation
         
         public IRepository<Street> StreetRepository { get; }
 
+        public IRepository<ApartmentResidents> ApartmentResidentsRepository { get; }
+        
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();
