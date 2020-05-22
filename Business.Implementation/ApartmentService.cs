@@ -42,10 +42,10 @@ namespace Business.Implementation
             {
                 throw new BusinessException("Apartment square for 1 person should be at least 9 square meters.");
             }
-            
-            resident.Apartments.Add(new ApartmentResidents {ResidentId = residentId, ApartmentId = apartmentId});
-            _unit.ResidentRepository.Update(resident);
-            _unit.ApartmentRepository.Update(apartment);
+
+            var apartmentResident = new ApartmentResidents {ApartmentId = apartmentId, ResidentId = residentId};
+            await _unit.ApartmentResidentsRepository.Create(apartmentResident);
+           
             await _unit.SaveAsync();
         }
     }
