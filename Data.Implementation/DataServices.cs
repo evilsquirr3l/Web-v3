@@ -1,4 +1,5 @@
 using Data.Abstraction;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,8 @@ namespace Data.Implementation
         {
             services.AddDbContext<MapDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddIdentityCore<User>().AddEntityFrameworkStores<MapDbContext>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             

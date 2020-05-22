@@ -1,11 +1,12 @@
 using System;
 using System.Reflection;
 using Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Implementation
 {
-    public class MapDbContext : DbContext
+    public class MapDbContext : IdentityDbContext<User>
     {
         public MapDbContext(DbContextOptions<MapDbContext> options) : base(options)
         {
