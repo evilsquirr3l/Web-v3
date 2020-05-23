@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper;
 using Business.Models;
 using Data.Entities;
 
-namespace Business.Implementation
+namespace Business.Implementation.Configurations
 {
     public class AutomapperProfile : Profile
     {
