@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Business.Implementation
@@ -46,24 +47,25 @@ namespace Business.Implementation
         {
             var user = new User()
             {
-                UserName = model.Email, 
                 Email = model.Email,
+                UserName = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName
             };
             
             var result = await _unit.UserManager.CreateAsync(user, model.Password);
-
+            
             if (result.Succeeded)
             {
-                //await _unit.SignInManager.SignInAsync(user, false);
                 return await GenerateJwtToken(model.Email, user);
             }
-            
-            throw new BusinessException("Registration failed.");
+
+            string errors = result.Errors.Aggregate("", (current, identityError) => current + (identityError.Description + "\n"));
+
+            throw new BusinessException(errors);
         }
         
-        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
+        private async Task<object> GenerateJwtToken(string email, User user)
         {
             var claims = new List<Claim>
             {
