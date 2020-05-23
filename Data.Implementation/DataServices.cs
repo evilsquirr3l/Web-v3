@@ -16,7 +16,8 @@ namespace Data.Implementation
 
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<MapDbContext>()
-                .AddSignInManager();
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
