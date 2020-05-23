@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Data.Abstraction;
 using Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Data.Implementation
 {
@@ -11,7 +12,8 @@ namespace Data.Implementation
         public UnitOfWork(MapDbContext context, IApartmentRepository apartmentRepository, 
             IRepository<City> cityRepository, IRepository<Country> countryRepository, 
             IRepository<House> houseRepository, IResidentRepository residentRepository, 
-            IRepository<Street> streetRepository, IRepository<ApartmentResidents> apartmentResidentsRepository)
+            IRepository<Street> streetRepository, IRepository<ApartmentResidents> apartmentResidentsRepository, 
+            UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
             ApartmentRepository = apartmentRepository;
@@ -21,6 +23,8 @@ namespace Data.Implementation
             ResidentRepository = residentRepository;
             StreetRepository = streetRepository;
             ApartmentResidentsRepository = apartmentResidentsRepository;
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
 
         public IApartmentRepository ApartmentRepository { get; }
@@ -37,6 +41,10 @@ namespace Data.Implementation
 
         public IRepository<ApartmentResidents> ApartmentResidentsRepository { get; }
         
+        public UserManager<User> UserManager { get; }
+        
+        public SignInManager<User> SignInManager { get; }
+
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();

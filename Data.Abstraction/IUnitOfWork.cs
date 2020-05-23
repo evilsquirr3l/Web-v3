@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Data.Abstraction
 {
@@ -18,6 +19,10 @@ namespace Data.Abstraction
         public IRepository<Street> StreetRepository { get; }
 
         public IRepository<ApartmentResidents> ApartmentResidentsRepository { get; }
+        
+        public UserManager<User> UserManager { get; } 
+        
+        public SignInManager<User> SignInManager { get; } 
 
         Task<int> SaveAsync();
     }
