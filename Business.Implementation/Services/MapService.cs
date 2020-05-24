@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstraction;
 using Business.Models;
 using Data.Abstraction;
-using Data.Entities;
 
-namespace Business.Implementation
+namespace Business.Implementation.Services
 {
     public class MapService : IMapService
     {

@@ -8,7 +8,7 @@ using Business.Models;
 using Data.Abstraction;
 using Data.Entities;
 
-namespace Business.Implementation
+namespace Business.Implementation.Services
 {
     public class ApartmentService : IApartmentService
     {

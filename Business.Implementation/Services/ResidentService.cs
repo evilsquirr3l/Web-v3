@@ -6,7 +6,7 @@ using Business.Abstraction;
 using Business.Models;
 using Data.Abstraction;
 
-namespace Business.Implementation
+namespace Business.Implementation.Services
 {
     public class ResidentService : IResidentService
     {
